@@ -37,7 +37,7 @@ let paths = {
     path.join(root, 'index.html')
   ],
   entry: [
-    'babel-polyfill',
+    '@babel/polyfill',
     path.join(__dirname, root, 'app/app.js')
   ],
   output: root,

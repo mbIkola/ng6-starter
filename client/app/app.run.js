@@ -1,4 +1,4 @@
-import * as vis from 'ui-router-visualizer';
+import * as vis from '@uirouter/visualizer';
 
 function AppRun(Auth, $rootScope, $state, $trace, $uiRouter, $transitions) {
   "ngInject";
