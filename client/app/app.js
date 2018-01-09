@@ -3,6 +3,8 @@ import 'popper.js';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+
+
 import angular from 'angular';
 import toastr from 'angular-toastr';
 import 'angular-toastr/dist/angular-toastr.css';
@@ -15,9 +17,12 @@ import 'angular-translate-storage-cookie';
 import 'angular-translate-storage-local';
 import 'angular-translate-handler-log';
 import 'angular-translate-interpolation-messageformat';
-import uiRouter from '@uirouter/angularjs';
+import 'angular-google-analytics';
 import 'angular-loading-bar/build/loading-bar.css';
 import 'angular-loading-bar';
+import uiRouter from '@uirouter/angularjs';
+
+
 import Common from './common/';
 import Components from './components/';
 import AppComponent from './app.component';
@@ -35,6 +40,7 @@ const requires = [
   uiRouter,
   'pascalprecht.translate',
   'angular-loading-bar',
+  'angular-google-analytics',
   Common,
   Components
 ];

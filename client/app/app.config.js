@@ -26,7 +26,17 @@ function jwtInterceptor(JWT, AppConstants, $window, $q) {
   };
 }
 
-function AppConfig($logProvider, toastrConfig, $httpProvider, $stateProvider, $locationProvider, $urlRouterProvider, $translateProvider) {
+function AppConfig(
+  $logProvider,
+  toastrConfig,
+  $httpProvider,
+  $stateProvider,
+  $locationProvider,
+  $urlRouterProvider,
+  $translateProvider,
+  AnalyticsProvider,
+  AppConstants
+) {
   'ngInject';
 
   // Enable log
@@ -58,8 +68,22 @@ function AppConfig($logProvider, toastrConfig, $httpProvider, $stateProvider, $l
     If you don't want hashbang routing, uncomment this line.
     Our tutorial will be using hashbang routing though :)
   */
-  // $locationProvider.html5Mode(true);
-  $locationProvider.html5Mode(true).hashPrefix('!');
+  $locationProvider.html5Mode(true);
+  //$locationProvider.html5Mode(true).hashPrefix('!');
+  AnalyticsProvider
+    .setAccount(AppConstants.GA_KEY)
+    .useECommerce(false)
+    .useEnhancedLinkAttribution(true)
+    .setPageEvent('$stateChangeSuccess'); // ui router fires that event on page change
+
+  // This method is designed specifically for unit testing and entering test mode cannot be changed after
+  // being called. Test mode skips the insertion of the Google Analytics script tags (both classic and universal)
+  // and ensures there is a $window.ga() method available for calling by unit tests. This corrects transient
+  // errors that were seen during unit tests due to the operation of the Google Analytics scripts.
+  // AnalyticsProvider.enterTestMode();
+  // AnalyticsProvider.enterDebugMode(true);
+  // AnalyticsProvider.logAllCalls(true);
+
 
   $stateProvider
     .state('app', {

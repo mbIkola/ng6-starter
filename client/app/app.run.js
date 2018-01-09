@@ -1,6 +1,6 @@
 import * as vis from '@uirouter/visualizer';
 
-function AppRun(Auth, $rootScope, $state, $trace, $uiRouter, $transitions) {
+function AppRun(Auth, $rootScope, $state, $trace, $uiRouter, $transitions, Analytics) {
   "ngInject";
 
   $rootScope.$on("event:signinRequest", function (event, data) {
