@@ -15,7 +15,7 @@ let signupModule = angular.module('signup', [
         url: '/signup',
         component: 'signup',
         data: {
-          requiresAuth: false
+          requiresGuest: true
         }
       });
   })

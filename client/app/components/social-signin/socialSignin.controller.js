@@ -15,17 +15,29 @@ class SocialSigninController {
 
   authSocial(provider) {
     this._Auth.authenticate(provider)
+      .then( res => res.data )
       .then((res) => {
+        console.log(res, res.user, res.user.displayName);
         this._toastr.success(
+
           this._$translate.instant(
-            'Welcome back, {{displayName}}!',
+            'welcome-back',
             res.user
           )
         );
         this._$state.go('app.profile');
       }).catch((err) => {
-        console.error("Social login error", err);
-        this._toastr.error( this._$translate.instant('Login Error'));
+        if ( err.name === "SyntaxError") {
+          debugger;
+        }
+        if ( err.message === "The popup window was closed" ) {
+          // do nothing except tracking throug GA.
+        }  else {
+          console.error("Social login error", err);
+          throw err;
+        }
+
+        //this._toastr.error( this._$translate.instant('Login Error'));
       });
   }
 }

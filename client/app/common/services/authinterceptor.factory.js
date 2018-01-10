@@ -1,8 +1,8 @@
-let authInterceptor = function(JWT, $q) {
+let authInterceptor = function($injector, $q) {
   'ngInject';
   return {
     request: (config) => {
-      let token = JWT.get();
+      let token = $injector.get('$auth').getToken();
       if ( token ) {
         config.headers.Authorization = 'Bearer ' + token;
       }
@@ -14,7 +14,7 @@ let authInterceptor = function(JWT, $q) {
     responseError : (rejection) => {
       if ( rejection.status === 401 ) {
         console.info("Unauthorized. Forcing logout.")
-        JWT.remove();
+        $injector.get('$auth').removeToken();
       }
       return $q.reject(rejection);
     }

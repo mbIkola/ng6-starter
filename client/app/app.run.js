@@ -20,17 +20,26 @@ function AppRun(Auth, $rootScope, $state, $trace, $uiRouter, $transitions, Analy
   //vis.visualizer($uiRouter);
 
   //processing auth redirecting
-  $transitions.onStart({
-    to: (state) => {
-      return !!state.data.requiresAuth;
+  function redirectToOnCondition(destination, condition) {
+    return (trans) => {
+      let $state = trans.router.stateService;
+      let _Auth = trans.injector().get('Auth');
+      if (condition(Auth, $state)) {
+        return $state.target(destination);
+      }
     }
-  }, function (trans) {
-    var $state = trans.router.stateService;
-    var _Auth = trans.injector().get('Auth');
+  }
 
-    _Auth.ensureAuthIs(true);
+  let redirectToLoginWhenUnauthorized = redirectToOnCondition('app.signin', (auth) => !auth.isAuthenticated() );
+  let redirectToProfileWhenAuthorized = redirectToOnCondition('app.profile',(auth) => auth.isAuthenticated() );
 
-  });
+  $transitions.onStart(
+    { to: (state) => !!state.data.requiresAuth } , redirectToLoginWhenUnauthorized
+  );
+
+  $transitions.onStart(
+    { to: (state) => !!state.data.requiresGuest }, redirectToProfileWhenAuthorized
+  );
 
 };
 

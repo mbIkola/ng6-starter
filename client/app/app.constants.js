@@ -1,7 +1,6 @@
 const AppConstants = {
   appName: "Angular ES6 Sample",
-  jwtKey: "id-token",
-  api: 'http://localhost:3000/api/',
+  api: 'http://localhost:3002/api/',
 
   GA_KEY: 'UA-112210287-1',
 
@@ -11,10 +10,12 @@ const AppConstants = {
       scope: ['profile', 'email'],
     },
     github: {
-      clientId: '417cc6dc0c68b762da6a'
+      clientId: '417cc6dc0c68b762da6a',
+      scope: ['profile', 'email'],
     },
     linkedin: {
-      clientId: '7788yce1ksfyve'
+      clientId: '7788yce1ksfyve',
+      scope: ['profile', 'email'],
     },
     facebook: {
       scope: ['public_profile', 'email'],

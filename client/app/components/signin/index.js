@@ -14,7 +14,7 @@ let signinModule = angular.module('signin', [
         url: '/signin',
         component: 'signin',
         data: {
-          requiresAuth: false
+          requiresGuest: true
         }
       });
   })

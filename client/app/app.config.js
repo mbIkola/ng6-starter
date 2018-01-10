@@ -13,6 +13,7 @@ function AppConfig(
   $locationProvider,
   $urlRouterProvider,
   $translateProvider,
+  $authProvider,
   AnalyticsProvider,
   AppConstants
 ) {
@@ -73,12 +74,23 @@ function AppConfig(
       abstract: true,
       component: 'app',
       data: {
-        requiresAuth: true
+        requiresAuth: undefined
           // auth: function (Auth) {
           //   return Auth.ensureAuthIs();
           // }
       }
     });
+
+  let authUrlPrefix = AppConstants.api + 'auth/';
+  for ( let oauthService in AppConstants.auth ) {
+    console.log("AuthProvider: ", oauthService);
+    let config = AppConstants.auth[oauthService];
+    config.url = authUrlPrefix + oauthService;
+    $authProvider[oauthService](config);
+  }
+
+  $authProvider.loginUrl = authUrlPrefix + 'login';
+  $authProvider.signupUrl = authUrlPrefix + 'register';
 
   $urlRouterProvider.otherwise('/');
 }

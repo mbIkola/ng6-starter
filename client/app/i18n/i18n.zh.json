@@ -1,7 +1,7 @@
 {
   "posts": "博文",
   "new-post": "新建博文",
-  "welcome-back":"欢迎回来,{{displayName}}",
+  "welcome-back": "欢迎回来",
   "about": "关于该网站"
 
 }

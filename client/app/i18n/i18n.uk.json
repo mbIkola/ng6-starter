@@ -1,7 +1,7 @@
 {
   "posts": "Новини",
   "new-post": "новий пост",
-  "Welcome back":"З поверненням,{{displayName}}",
+  "welcome-back":"З поверненням",
   "Home": "На Батьківщину",
   "Sign In" : "Увійти",
   "Sign Up" : "Зареєструватися",
