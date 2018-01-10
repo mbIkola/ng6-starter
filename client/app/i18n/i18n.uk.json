@@ -28,6 +28,20 @@
   "Confirm Password" : "Підтвердження пароля",
   "Password must be at least 6 characters long." : "Пароль має містити принаймні 6 символів",
   "Password is required." : "Пароль обов'язковий",
-  "About": "Про сайт"
+  "About": "Про сайт",
+  "Change Password": "Змінити пароль",
+  "Change Language": "Змінити мову",
+  "Phone" : "Телефон",
+  "Save" : "Зберегти",
+  "General Information" : "Загальна інформація",
+  "First Name" : "Ім'я",
+  "Last Name" : "Прізвище",
+  "API Keys" : "Ключі API",
+  "Send Email Notifications":"Надіслати повідомлення електронної пошти",
+  "Some short description what this page is about":"Деякий короткий опис цієї сторінки",
+  "When profile information changes":"Коли інформація профілю змінюється",
+  "When anyone logs into your account from a new device or browser":"Коли хтось входить до вашого облікового запису з нового пристрою чи веб-переглядача",
+  "Weekly Reports":"Щотижневі звіти",
+  "Daily Reports":"Щоденні звіти"
 
 }

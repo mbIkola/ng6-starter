@@ -16,7 +16,7 @@ let homeModule = angular.module('home', [
         url: '/',
         component: 'home',
         data: {
-          requiresAuth: undefined
+          requiresAuth: false
         }
       });
   })

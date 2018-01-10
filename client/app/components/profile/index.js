@@ -10,7 +10,8 @@ let profileModule = angular.module('profile', [
     $stateProvider
       .state('app.profile', {
         url: '/profile',
-        component: 'profile'
+        component: 'profile',
+        requiresAuth: true
       });
   })
   .component('profile', profileComponent)

@@ -2,3 +2,13 @@
   color: red;
 }
 
+
+h3 {
+  &.with-line {
+    border-bottom: 1px solid lightgray;
+    padding-top: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 3rem;
+    width: 100%;
+  }
+}

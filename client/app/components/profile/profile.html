@@ -1,3 +1,195 @@
-<div>
-  <h1>{{ $ctrl.name }}</h1>
-</div>
+<section>
+  <div class="content">
+    <div class="main-header">
+
+      <h2>{{'Profile'|translate}} {{$ctrl.huipizda}}</h2>
+      <em>{{'Some short description what this page is about'|translate}}</em>
+    </div>
+
+
+
+    <div class="main-content">
+
+      <form name="general_information" class="form" ng-submit="$ctrl.onGeneralInformationUpdated()" novalidate>
+      <h3 class="with-line">{{'General Information'|translate}}</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group row clearfix">
+            <label for="inputFirstName" class="col-sm-3 control-label">{{'First Name'|translate}}</label>
+
+            <div class="col-sm-9">
+              <input type="text" class="form-control"
+                     id="inputFirstName" name="firstname" placeholder=""
+                     autocomplete="firstname" ng-model="$ctrl.user.firstname"
+                     value="{{$ctrl.user.firstname}}">
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label for="inputLastName" class="col-sm-3 control-label">{{'Last Name'|translate}}</label>
+
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputLastName"
+                     name="lastname" placeholder="" value="{{$ctrl.user.lastname}}"
+                     autocomplete="lastname" ng-model="$ctrl.user.lastname"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group row clearfix">
+            <label for="inputEmail3" class="col-sm-3 control-label">{{'Email'|translate}}</label>
+
+            <div class="col-sm-9">
+              <input type="email" class="form-control" id="inputEmail3"
+                     placeholder="" readonly disabled type="email" value="{{$ctrl.user.email}}">
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label for="inputPhone" class="col-sm-3 control-label">{{'Phone'|translate}}</label>
+
+            <div class="col-sm-9">
+              <input type="text"
+                     class="form-control" name="phone" id="inputPhone"
+                     placeholder="" type="tel" value="{{$ctrl.user.phone}}"
+                     autocomplete="phone" ng-model="$ctrl.user.phone"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-control-feedback" ng-show="!general_information.$valid && general_information.$dirty">
+            Some error message
+          </div>
+        </div>
+        <div class="col-sm-4 align-content-end">
+        <button type="submit" class="btn btn-primary btn-with-icon save-profile float-sm-right"
+                ng-disabled="!general_information.$valid ||  general_information.$pristine"
+                >
+
+          <i class="ion-android-checkmark-circle"></i>{{'Save'|translate}}
+        </button>
+        </div>
+      </div>
+
+      </form>
+
+
+      <form name="change_password_form" class="form" ng-submit="$ctrl.onPasswordChanged()" novalidate >
+      <h3 class="with-line">{{'Change Password'|translate}}</h3>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group row clearfix"
+                 ng-class="{'has-danger':change_password_form.password.$invalid && !change_password_form.password.$pristine}">
+
+              <label for="inputPassword" class="col-sm-3 control-label">{{'Password'|translate}}</label>
+
+              <div class="col-sm-9">
+                <input type="password" class="form-control"
+                       id="inputPassword" name="password"
+                       autocomplete="new-password" placeholder="" value=""
+                       ng-minlength="6" ng-model="password"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group row clearfix"
+                 ng-class="{'has-danger':change_password_form.password_confirm.$invalid && change_password_form.password_confirm.$dirty}"
+            >
+              <label for="inputConfirmPassword" class="col-sm-3 control-label">{{'Confirm Password'|translate}}</label>
+
+              <div class="col-sm-9">
+                <input type="password" class="form-control" id="inputConfirmPassword"
+                       name="password_confirm" autocomplete="new-password"  placeholder="" value=""
+                       ng-model="password_confirm" validate-equals="password"
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- change-password forms should have hidden username fields for accessibility -->
+          <input type="hidden" autocomplete="username email" readonly name="email" value="{{user.email}}" />
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="form-control-feedback" ng-show="!change_password_form.$valid && change_password_form.$dirty">
+              <p ng-show="change_password_form.password_confirm.$error.required">{{'Please confirm your password.'|translate}}</p>
+              <p ng-show="change_password_form.password_confirm.$error.equal">{{'Passwords do not match.'|translate}}</p>
+              <p ng-show="change_password_form.password.$error.minlength">{{'Password must be at least 6 characters long.'|translate}}</p>
+            </div>
+          </div>
+          <div class="col-sm-4 align-content-end">
+            <button type="submit" class="btn btn-primary btn-with-icon save-profile float-sm-right"
+                    ng-disabled="!change_password_form.$valid ||  change_password_form.$pristine">
+
+              <i class="ion-android-checkmark-circle"></i>{{'Change Password'|translate}}
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+
+      <h3 class="with-line">{{'Send Email Notifications'|translate}}</h3>
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <div class="form-group row clearfix">
+            <label class="col-sm-8" for="switch0">{{'When profile information changes'|translate}}</label>
+
+            <div class="col-sm-4">
+              <switch color="primary" id="switch0" ng-model="notifications.profile_changed"
+                      ng-change="$ctrl.onNotificationSettingsChanged()"></switch>
+            </div>
+          </div>
+
+          <div class="form-group row clearfix">
+            <label class="col-sm-8" for="switch1">{{'When anyone logs into your account from a new device or browser'|translate}}</label>
+
+            <div class="col-sm-4 ">
+              <switch color="primary" id="switch1" ng-model="notifications.unusual_login"
+                      ng-change="$ctrl.onNotificationSettingsChanged()"></switch>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="form-group row clearfix">
+            <label class="col-sm-8" for="switch2">{{'Weekly Reports'|translate}}</label>
+
+            <div class="col-sm-4">
+              <switch color="primary" id="switch2"    ng-model="notifications.report_weekly"
+                      ng-change="$ctrl.onNotificationSettingsChanged()"></switch>
+            </div>
+          </div>
+
+          <div class="form-group row clearfix">
+            <label class="col-sm-8" for="switch3">{{'Daily Reports'|translate}}</label>
+
+            <div class="col-sm-4">
+              <switch color="primary" id="switch3"   ng-model="notifications.report_daily"
+                      ng-change="$ctrl.onNotificationSettingsChanged()"></switch>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+
+</section>

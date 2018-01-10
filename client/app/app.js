@@ -4,6 +4,9 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 
+// import './uikit/main.scss';
+
+
 
 import angular from 'angular';
 import toastr from 'angular-toastr';
@@ -16,12 +19,19 @@ import 'angular-translate';
 import 'angular-translate-storage-cookie';
 import 'angular-translate-storage-local';
 import 'angular-translate-handler-log';
+
 import 'angular-translate-interpolation-messageformat';
 import 'angular-google-analytics';
 import 'angular-loading-bar/build/loading-bar.css';
 import 'angular-loading-bar';
+import 'angular-sanitize';
 import 'satellizer';
+
 import uiRouter from '@uirouter/angularjs';
+
+
+import 'bootstrap-switch';
+import 'bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css';
 
 
 import Common from './common/';

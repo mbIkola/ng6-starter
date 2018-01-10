@@ -10,7 +10,7 @@ module.exports = {
     loaders: [
       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'babel-loader' },
       { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.(scss|sass)$/, loader: 'style-loader!css-loader!sass-loader' },
+      { test: /\.(scss|sass)$/, loader: 'style-loader!css-loader!sass-loader?includePaths[]=' + path.resolve(__dirname, "./node_modules/compass-mixins/lib")},
     //  { test: /\.styl$/, loader: 'style!css!stylus' },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, loader: 'style-loader!css-loader' },

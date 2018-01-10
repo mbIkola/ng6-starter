@@ -6,6 +6,7 @@ import Signin from './signin/';
 import Signup from './signup/';
 import Profile from './profile/';
 import socialSigninModule from "./social-signin";
+import apikeys from './apikeys';
 
 
 let componentsModule = angular.module('app.components', [
@@ -15,7 +16,8 @@ let componentsModule = angular.module('app.components', [
   Signin,
   Signup,
   Profile,
-  socialSigninModule
+  socialSigninModule,
+  apikeys
 ])
 .name;
 

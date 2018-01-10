@@ -47,6 +47,7 @@ function AppConfig(
 
   $translateProvider.useMissingTranslationHandlerLog();
   $translateProvider.useMessageFormatInterpolation();
+  $translateProvider.useSanitizeValueStrategy(null); // fuck it
 
   /*
     If you don't want hashbang routing, uncomment this line.
@@ -74,10 +75,6 @@ function AppConfig(
       abstract: true,
       component: 'app',
       data: {
-        requiresAuth: undefined
-          // auth: function (Auth) {
-          //   return Auth.ensureAuthIs();
-          // }
       }
     });
 
