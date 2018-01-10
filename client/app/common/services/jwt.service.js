@@ -3,20 +3,25 @@ class JWT {
   constructor(AppConstants, $window) {
     'ngInject';
 
-    this._AppConstants = AppConstants;
-    this._$window = $window;
-  }
+    this.storage = $window.localStorage;
+    this.tokenKey = AppConstants.jwtKey;
+    this.currentToken = null;
 
-  save(token) {
-    this._$window.localStorage[this._AppConstants.jwtKey] = token;
   }
 
   get() {
-    return this._$window.localStorage[this._AppConstants.jwtKey];
+    if ( ! this.currentToken ) {
+      this.currentToken = this.storage.get(this.tokenKey);
+    }
+    return this.currentToken;
   }
-
-  destroy() {
-    this._$window.localStorage.removeItem(this._AppConstants.jwtKey);
+  set(token) {
+    this.currentToken = token;
+    this.storage.setItem(this.tokenKey, token);
+  }
+  remove() {
+    this.currentToken = null;
+    this.storage.removeItem(this.tokenKey);
   }
 
 }

@@ -20,6 +20,7 @@ import 'angular-translate-interpolation-messageformat';
 import 'angular-google-analytics';
 import 'angular-loading-bar/build/loading-bar.css';
 import 'angular-loading-bar';
+import 'satellizer';
 import uiRouter from '@uirouter/angularjs';
 
 
@@ -41,6 +42,7 @@ const requires = [
   'pascalprecht.translate',
   'angular-loading-bar',
   'angular-google-analytics',
+  'satellizer',
   Common,
   Components
 ];

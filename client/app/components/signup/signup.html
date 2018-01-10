@@ -1,57 +1,97 @@
+<div class="container ng-cloak">
+
 <div class="row">
-  <div class="offset-md-3 col-md-6">
+  <div class="col col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12">
     <div class="card">
+
       <div class="card-header">
-        <h1>{{ $ctrl.name }}</h1>
+        <h1>{{'Sign Up'|translate}}</h1>
       </div>
-      <div class="card-block">
-        <form id="form" name="form" class="form" ng-submit="$ctrl.signup()" novalidate>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group" ng-class="{'has-danger':form.firstName.$invalid && !form.firstName.$pristine}">
-                <label class="form-control-label" for="firstName">{{'firstName'}}</label>
-                <input class="form-control" id="firstName" name="firstName" ng-model="$ctrl.data.firstName" required/>
-                <div class="form-control-feedback" ng-messages="form.firstName.$error" ng-if="form.firstName.$invalid && !form.firstName.$pristine">
-                  <p ng-message="required">FirstName is required</p>
-                </div>
-              </div>
+
+      <div class="card-block p-2">
+
+        <form name="signup" class="form" ng-submit="$ctrl.signup()" novalidate>
+
+          <social-signin></social-signin>
+
+          <div class="form-group"
+               ng-class="{'has-danger':signup.email.$invalid && signup.email.$dirty}">
+
+            <label class="form-control-label" for="email">{{'Email'|translate}}</label>
+
+            <input class="form-control" id="email" name="email" type="email"
+                   ng-class="{'form-control-danger':signup.email.$invalid && signup.email.$dirty}"
+                   ng-model="email"  placeholder="{{'Email Address'|translate}}"
+                  autocomplete="email" autofocus required=""
+            />
+
+            <div class="form-control-feedback" ng-show="signup.email.$invalid && signup.email.$dirty">
+              <p ng-show="signup.email.$error.required">{{'Email is required'|translate}}</p>
+              <p ng-show="signup.email.$error.email">{{'Please enter a valid email address'|translate}}</p>
             </div>
-            <div class="col-md-6">
-              <div class="form-group" ng-class="{'has-danger':form.lastName.$invalid && !form.lastName.$pristine}">
-                <label class="form-control-label col-md-12" for="lastName">{{'lastName'}}</label>
-                <input class="form-control" id="lastName" name="lastName" ng-model="$ctrl.data.lastName" required/>
-                <div class="form-control-feedback" ng-messages="form.lastName.$error" ng-if="form.lastName.$invalid && !form.lastName.$pristine">
-                  <p ng-message="required">LastName is required</p>
-                </div>
-              </div>
-            </div>
+
           </div>
 
-          <div class="form-group" ng-class="{'has-danger':form.username.$invalid && !form.username.$pristine}">
-            <label class="form-control-label" for="username">{{'username'}}</label>
-            <input class="form-control" id="username" name="username" ng-model="$ctrl.data.username" required ng-minlength="6" ng-maxlength="20" />
-            <div class="form-control-feedback" ng-messages="form.username.$error" ng-if="form.username.$invalid && !form.username.$pristine">
-              <p ng-message="required">Username is required</p>
-              <p ng-message="minlength">Username is too short(at least 6 chars)</p>
-              <p ng-message="maxlength">Username is too long(at most 20 chars)</p>
+          <div class="form-group"
+               ng-class="{'has-danger':signup.password.$invalid && !signup.password.$pristine}">
+
+            <label class="form-control-label" for="password">{{'Password'|translate}}</label>
+
+            <input class="form-control" type="password"
+                   name="password" id="password" ng-model="password"
+                   ng-class="{'form-control-danger':signup.password.$invalid && !signup.password.$pristine}"
+                   placeholder="{{'Password'|translate}}"
+                   required ng-minlength="6"  autocomplete="new-password" />
+
+            <div class="form-control-feedback" ng-messages="signup.password.$error"
+                 ng-show="signup.password.$invalid && !signup.password.$pristine">
+              <p ng-message="required">{{'Password is required.'|translate}}</p>
+              <p ng-message="minlength">{{'Password must be at least 6 characters long.'|translate}}</p>
             </div>
+
           </div>
-          <div class="form-group" ng-class="{'has-danger':form.password.$invalid && !form.password.$pristine}">
-            <label class="form-control-label" for="password">{{'password'}}</label>
-            <input class="form-control" type="password" name="password" id="password" ng-model="$ctrl.data.password" required ng-minlength="6" ng-maxlength="20" />
-            <div class="form-control-feedback" ng-messages="form.password.$error" ng-if="form.password.$invalid && !form.password.$pristine">
-              <p ng-message="required">Password is required.</p>
-              <p ng-message="minlength,maxlength">Password should be consist of 6 to 20 chars.</p>
+
+          <div class="form-group"
+               ng-class="{'has-danger':signup.password_confirm.$invalid && signup.password_confirm.$dirty}">
+
+            <label class="form-control-label" for="password_confirm">{{'Confirm Password'|translate}}</label>
+
+            <input class="form-control" type="password"
+                   ng-class="{'form-control-danger':signup.password_confirm.$invalid && signup.password_confirm.$dirty}"
+                   name="password_confirm" id="password_confirm"
+                   required autocomplete="new-password" ng-model="password_confirm"
+                   placeholder="{{'Confirm your password'|translate}}"
+                   validate-equals="password" />
+
+            <div class="form-control-feedback"
+                 ng-show="signup.password_confirm.$invalid && signup.password_confirm.$dirty">
+              <p ng-show="signup.password_confirm.$error.required">{{'Please confirm your password.'|translate}}</p>
+              <p ng-show="signup.password_confirm.$error.equal">{{'Passwords do not match.'|translate}}</p>
             </div>
+
+
           </div>
+
           <div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg" ng-disabled="form.$invalid || form.$pending">  {{'SIGN UP'}}
+            <button type="submit"
+                    class="btn btn-success btn-lg"
+                    ng-disabled="signup.$invalid || signup.$pending">  {{'Sign Up'|translate}}
+            </button>
           </div>
+
+
         </form>
       </div>
+
       <div class="card-footer">
-        Already registered, <a  href="#" ui-sref="app.signin">{{'signin'}}</a>
+        <small class="create-account text-muted">{{'Already have an account?'|translate}}
+          <a href="#" ui-sref="app.signin" class=""> {{'Sign In here'|translate}}</a>
+        </small>
       </div>
+
     </div>
   </div>
+</div>
+
+
 </div>

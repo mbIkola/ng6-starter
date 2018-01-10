@@ -5,6 +5,8 @@ import Posts from './posts/';
 import Signin from './signin/';
 import Signup from './signup/';
 import Profile from './profile/';
+import socialSigninModule from "./social-signin";
+
 
 let componentsModule = angular.module('app.components', [
   Home,
@@ -12,7 +14,8 @@ let componentsModule = angular.module('app.components', [
   Posts,
   Signin,
   Signup,
-  Profile
+  Profile,
+  socialSigninModule
 ])
 .name;
 

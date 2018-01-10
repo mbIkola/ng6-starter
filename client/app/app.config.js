@@ -1,30 +1,9 @@
-import en from './i18n.en.json';
-import zh from './i18n.zh.json';
+import en from './i18n/i18n.en.json';
+import zh from './i18n/i18n.zh.json';
+import uk from './i18n/i18n.uk.json';
+import ru from './i18n/i18n.ru.json';
 
-function jwtInterceptor(JWT, AppConstants, $window, $q) {
-  'ngInject';
 
-  return {
-    // automatically attach Authorization header
-    request: function (config) {
-      if ( /*config.url.indexOf(AppConstants.api) === 0 &&*/ JWT.get()) {
-        config.headers.Authorization = 'Bearer ' + JWT.get();
-      }
-      return config;
-    },
-
-    // Handle 401
-    responseError: function (rejection) {
-      if (rejection.status === 401) {
-        // clear any JWT token being stored
-        JWT.destroy();
-        // do a hard page refresh
-        $window.location.reload();
-      }
-      return $q.reject(rejection);
-    }
-  };
-}
 
 function AppConfig(
   $logProvider,
@@ -49,13 +28,17 @@ function AppConfig(
   toastrConfig.preventDuplicates = true;
   toastrConfig.progressBar = true;
 
-  $httpProvider.interceptors.push(jwtInterceptor);
+  $httpProvider.interceptors.push('authInterceptor');
 
 
   // Adding a translation table for the English language
   $translateProvider.translations('en', en);
-  // Adding a translation table for the Chinese language
   $translateProvider.translations('zh', zh);
+  $translateProvider.translations('uk', uk);
+  $translateProvider.translations('ru', ru);
+
+  $translateProvider.fallbackLanguage('en');
+
   // Tell the module what language to use by default
   $translateProvider.preferredLanguage('en');
   // Tell the module to store the language in the local storage

@@ -1,10 +1,24 @@
-<footer class="footer" style="background-color: #e3f2fd;">
+<footer class="footer" >
 	<div class="container">
 		<p class="text-muted">
-			<div class="btn-group btn-group-sm" role="group">
-				<a class="btn" ng-class="($ctrl.isLanguage('zh')) ? 'btn-primary' : 'btn-secondary'" ng-click="$ctrl.setLanguage('zh')">中</a>
-				<a class="btn" ng-class="($ctrl.isLanguage('en')) ? 'btn-primary' : 'btn-secondary'" ng-click="$ctrl.setLanguage('en')">EN</a>
-			</div>   Copyright: HantsyLabs
+
+      <!-- Example split danger button -->
+    <div class="btn-group">
+
+      <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">{{'Change Language'|translate}}</span>
+        <span class="flag-icon flag-icon-{{current.flag}}"></span> {{current.name}}
+      </button>
+
+      <div class="dropdown-menu">
+        <a class="dropdown-item"  ng-repeat="lang in availableTranslations" href="#" ng-click="$ctrl.setLanguage(lang.code)">
+          <span class="flag-icon flag-icon-{{lang.flag}}"></span> {{lang.name}}
+        </a>
+      </div>
+    </div>
+
 		</p>
+
+
 	</div>
 </footer>

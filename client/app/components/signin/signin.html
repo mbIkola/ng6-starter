@@ -1,34 +1,63 @@
-<div class="row">
-  <div class="offset-md-3 col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h1>{{ $ctrl.name }}</h1>
-      </div>
-      <div class="card-block">
-        <form id="form" name="form" class="form" ng-submit="$ctrl.signin()" novalidate>
-          <div class="form-group" ng-class="{'has-danger':form.username.$invalid && !form.username.$pristine}">
-            <label class="form-control-label" for="username">{{'username'}}</label>
-            <input class="form-control" id="username" name="username" ng-model="$ctrl.data.username" required/>
-            <div class="form-control-feedback" ng-messages="form.username.$error" ng-if="form.username.$invalid && !form.username.$pristine">
-              <p ng-message="required">Username is required</p>
-            </div>
-          </div>
-          <div class="form-group" ng-class="{'has-danger':form.password.$invalid && !form.password.$pristine}">
-            <label class="form-control-label" for="password">{{'password'}}</label>
+<div class="container ng-cloak">
+  <div class="row">
+    <div class="col col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12">
+      <div class="card">
 
-            <input class="form-control" type="password" name="password" id="password" ng-model="$ctrl.data.password" required/>
-            <div class="form-control-feedback" ng-messages="form.password.$error" ng-if="form.password.$invalid && !form.password.$pristine">
-              <p ng-message="required">Password is required</p>
+        <div class="card-header">
+          <h1>{{"Sign In"|translate}}</h1>
+        </div>
+
+        <div class="card-block p-2">
+          <social-signin></social-signin>
+          <form id="form" name="form" class="form" ng-submit="$ctrl.signin()" novalidate>
+
+            <div class="form-group"
+                 ng-class="{'has-danger':form.email.$invalid && form.email.$dirty}">
+
+              <label class="form-control-label" for="email">{{'Email'|translate}}</label>
+
+              <input class="form-control" id="email" name="email" type="email"
+                     ng-class="{'form-control-danger':form.email.$invalid && form.email.$dirty}"
+                     ng-model="email"  placeholder="{{'Email Address'|translate}}"
+                     autocomplete="email" autofocus required=""
+              />
+
+              <div class="form-control-feedback" ng-show="form.email.$invalid && form.email.$dirty">
+                <p ng-show="form.email.$error.required">{{'Email is required'|translate}}</p>
+                <p ng-show="form.email.$error.email">{{'Please enter a valid email address'|translate}}</p>
+              </div>
+
             </div>
 
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg" ng-disabled="form.$invalid || form.$pending">  {{'SIGN IN'}}
-          </div>
-        </form>
-      </div>
-      <div class="card-footer">
-        Not registered, <a href="#" ui-sref="app.signup">{{'signup'}}</a>
+
+
+            <div class="form-group" ng-class="{'has-danger':form.password.$invalid && !form.password.$pristine}">
+              <label class="form-control-label" for="password">{{'Password'|translate}}</label>
+              <input class="form-control" placeholder="Password" type="password" name="password" autocomplete="password"
+                     id="password" ng-model="$ctrl.data.password" required/>
+              <div class="form-control-feedback" ng-messages="form.password.$error"
+                   ng-if="form.password.$invalid && !form.password.$pristine">
+                <p ng-message="required">{{'Password is required'|translate}}</p>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-success btn-lg" ng-disabled="form.$invalid || form.$pending">
+                {{"Sign In"|translate}}
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="card-footer">
+          <small class="create-account text-muted">{{"Don't have an account?"|translate}}
+            <a href="#" ui-sref="app.signup" class=""> {{'Create it here'|translate}} </a>
+          </small>
+        </div>
+
+
       </div>
     </div>
   </div>

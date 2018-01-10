@@ -1,30 +1,33 @@
-class SignupController {
+
+
+class SocialSigninController {
   constructor(Auth, $state, $scope, toastr, $translate) {
     'ngInject';
 
 
     this._Auth = Auth;
     this._$state = $state;
-    this.name = 'Sign Up';
-
-    this._$scope = $scope;
     this._toastr = toastr;
     this._$translate = $translate;
+
+    this._$scope = $scope;
   }
 
-  signup() {
-    console.log('sign up with data @' + this._$scope);
-    this._Auth.register(this._$scope.email, this._$scope.password)
+  authSocial(provider) {
+    this._Auth.authenticate(provider)
       .then((res) => {
         this._toastr.success(
           this._$translate.instant(
-            'Thanks for signing up! An email has been sent to {{email}} with instructions for verifying your account. ',
+            'Welcome back, {{displayName}}!',
             res.user
           )
         );
         this._$state.go('app.profile');
+      }).catch((err) => {
+        console.error("Social login error", err);
+        this._toastr.error( this._$translate.instant('Login Error'));
       });
   }
 }
 
-export default SignupController;
+export default SocialSigninController;

@@ -6,21 +6,19 @@ class SigninController {
     this._$state = $state;
     this._toastr = toastr;
     this._$translate = $translate;
-    this.name = 'signin';
+    this.name = 'Sign In';
     this.data = {
-      username: '',
-      password: ''
+      email: undefined,
+      password: undefined
     };
   }
 
   signin() {
     console.log("signin with credentials:" + this.data);
-    this._Auth.attempAuth('signin', this.data)
+    this._Auth.login(this.data.email, this.data.password)
       .then((res) => {
-        this._toastr.success(this._$translate.instant('welcome-back', {
-          name: this.data.username
-        }));
-        this._$state.go('app.posts');
+        this._toastr.success(this._$translate.instant('welcome-back', res.user) );
+        this._$state.go('app.profile');
       });
   }
 }

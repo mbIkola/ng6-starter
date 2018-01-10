@@ -4,7 +4,10 @@
   "description": "Starter for Angular + ES6 + (Webpack or JSPM)",
   "main": "index.js",
   "dependencies": {
-    "angular-google-analytics": "^1.1.8"
+    "angular-google-analytics": "^1.1.8",
+    "bootstrap-select": "^1.12.4",
+    "flag-icon-css": "^2.9.0",
+    "satellizer": "^0.15.5"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.37",
@@ -32,7 +35,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-angularjs-annotate": "^0.7.0",
-    "bootstrap": "^4.0.0-beta",
+    "bootstrap": "^4.0.0-beta.3",
     "browser-sync": "^2.11.1",
     "chai": "^3.4.0",
     "connect-history-api-fallback": "^1.1.0",

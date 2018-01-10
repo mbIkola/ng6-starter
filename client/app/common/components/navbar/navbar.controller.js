@@ -1,10 +1,11 @@
 //import uiRouter from '@uirouter/angularjs';
 
 class NavbarController {
-  constructor($scope) {
+  constructor($scope, $auth) {
     'ngInject';
     this._$scope = $scope;
     this.name = 'navbar';
+    $scope.isAuthenticated = $auth.isAuthenticated;
   }
 
   $onInit() {
@@ -22,6 +23,11 @@ class NavbarController {
   onLogout() {
     console.log("on logout...");
     this._$scope.$emit("event:logoutRequest");
+  }
+
+
+  isAuthenticated() {
+    return
   }
 }
 

@@ -1,0 +1,13 @@
+$lightTextColor: rgba(0,0,0,.5);
+$darkTextColor:  #212121;
+
+
+a.social-login-btn, a.social-login-btn:visited {
+  color: $lightTextColor;
+  text-decoration: none;
+  outline: none;
+}
+a.social-login-btn:hover {
+  color: $darkTextColor;
+}
+

@@ -2,6 +2,7 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import commonSevices from '../../common/services/';
 import signupComponent from './signup.component';
+import usernameAvailable from './username-available.directive';
 
 let signupModule = angular.module('signup', [
   commonSevices,
@@ -19,6 +20,7 @@ let signupModule = angular.module('signup', [
       });
   })
   .component('signup', signupComponent)
+  .directive('usernameAvailable', usernameAvailable)
 
   .name;
 
