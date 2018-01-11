@@ -1,11 +1,165 @@
-<section>
-  <div class="content">
+<section >
+  <div class="content mb-5">
     <div class="main-header">
-      <h2>API Keys</h2>
-      <em>Some short description what this page is about</em>
+      <h2>API Credentials</h2>
+      <em>
+        This page allows you to view your Application Programming Interface (API) Login ID and
+        to create or disable your API Access Tokens
+      </em>
     </div>
-    <div class="main-content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem illo molestias nihil. Aliquam animi, dolorum molestiae mollitia provident quae quaerat sequi voluptate. Alias beatae facere illum, mollitia nam nesciunt odit quam quia repellat rerum sequi ullam vel voluptas! Adipisci asperiores assumenda at atque autem beatae consectetur culpa dignissimos dolore dolorum est excepturi harum, id illum incidunt inventore ipsum iusto laboriosam laudantium magnam minima neque nesciunt nihil, non perspiciatis quam repellendus repudiandae sit temporibus tenetur veritatis voluptas voluptates voluptatum. Accusamus, asperiores beatae corporis culpa dicta eaque excepturi facilis nihil officiis provident quaerat quas quasi, quos ratione sed sint sunt. Accusantium ad adipisci alias asperiores at deleniti doloribus earum eos illum impedit ipsam iste iusto laborum, laudantium magnam mollitia necessitatibus nihil nobis odit officiis perferendis possimus quae quisquam repellendus repudiandae sed sint sit tempora totam voluptate! Ad aliquid asperiores corporis dolor dolore hic illum in inventore ipsa ipsum magnam, maiores maxime minima natus nemo nobis nostrum perspiciatis praesentium quibusdam saepe, sequi sint totam ut vel veniam. Accusamus aspernatur, at doloribus ducimus excepturi facilis, iste labore molestiae odit, quas recusandae sapiente vitae! Consequuntur debitis deserunt dolores enim est excepturi exercitationem fuga, ipsam natus necessitatibus nulla officia provident, quia recusandae repudiandae tempora ut voluptatem. Assumenda aut nisi odio voluptatum. Ad aliquam, enim esse facilis iure libero obcaecati odio odit pariatur quae saepe ut velit voluptatum. Ab dolore ea earum est expedita? Aliquam aliquid aspernatur blanditiis commodi corporis dolore eligendi enim eos explicabo facilis fugit impedit, itaque iure iusto laudantium minima natus, necessitatibus non officiis omnis optio quas quia quos repellendus reprehenderit sequi sint tempora tenetur vel vitae! Accusantium adipisci alias beatae, debitis doloremque eaque eos eum, fugit illo inventore labore libero natus nemo neque nisi nobis nostrum odio perferendis placeat quasi quis quo quod rem repudiandae soluta unde veritatis? Ad, at deleniti dolorem doloremque doloribus ea, eligendi explicabo fugit laborum magnam optio possimus provident quisquam reiciendis tempora veritatis voluptas! Ab fugit, ipsum nemo quibusdam quos repudiandae veritatis voluptatibus. Architecto, assumenda dignissimos dolorum ea iste libero nam nihil nostrum nulla unde vel veniam! Cumque exercitationem facere praesentium ullam voluptatum. Ab, asperiores consequuntur dignissimos esse necessitatibus numquam sapiente? Consequatur nesciunt numquam saepe!</p>
+
+    <div class="main-content ">
+      <p>
+        Your API Login ID and Access Tokens are unique pieces of information specifically associated with your CoinMinex account.
+        <br/>
+        However, the API Login ID and Access Tokens are NOT used to for logging into the CoinMinex interface.
+        Access Tokens are only required when setting up an Internet connection between your webservice and CoinMinex gateway.
+        They are used by the CoinMinex gateways.
+        <br/>
+        API Login ID is required to track your client integration code.
+      </p>
+      <p><b>IMPORTANT:</b>
+        The API Access Tokens protect your account from unauthorized use and should not be shared with anyone.
+        Be sure to store these values securely on a server separate from your Web server and change the Access
+        Tokens regularly to further strengthen the security of your account.
+      </p>
+      <p>
+        <b>IMPORTANT:</b>
+        The API Login ID is different than your user login ID.
+        Your user login ID allows you to log into your Member Interface user account.
+        The API Access Tokens grants a access to CoinMinex API. The API Login ID allows us to track your integrations.
+      </p>
+      <p>
+        You may obtain a new, unique API Login ID and API Access tokens on this page as often as needed.
+      </p>
+
+      <h3 class="with-line">API Keys</h3>
+      <div class="row" >
+
+        <div class="card col-12 mb-2" ng-if="apiKeys.length === 0 ">
+          <div class="card-body ">
+            <h5 class="card-title">You haven't created API Keys yet :( </h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+
+
+        <table class="table" ng-if="apiKeys.length > 0 ">
+          <thead> <tr><th scope="col">#</th> <th scope="col">Key Name</th> <th scope="col">API Login ID</th><th></th></tr></thead>
+          <tbody>
+            <tr ng-repeat="item in apiKeys" ng-if="!item.deleted" >
+              <th scope="row">
+                <div class="input-group-text input-group-text-unstyled btn-outline-secondary">{{$index}}</div>
+              </th>
+              <td>
+                <label for="apikey-{{item.key}}" class="input-group-text input-group-text-unstyled btn-outline-secondary">
+                {{item.name}}
+                </label>
+              </td>
+              <td>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="apikey-{{item.key}}" readonly value="{{item.key}}" />
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary"
+                            title="#{{item.key}}"
+                            data-clipboard-target="#apikey-{{item.key}}"
+                            uib-tooltip="Copied!"
+                            tooltip-trigger="'focus'"
+                            tooltip-popup-close-delay="2000"
+                            ngclipboard
+                            >
+                      Copy
+                    </button>
+                  </div>
+                </div>
+              </td>
+              <td> <button class="btn btn-outline-secondary" title="Remove" ng-click="confirm(item.key)">Remove</button> </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <form>
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <label class="col-form-label sr-only" for="inlineFormInput">Create new API Key:</label>
+              <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Choose Key Name"
+                     ng-keyup="addApiKey ($event)" ng-model="newKeyName"
+              >
+            </div>
+            <div class="col-auto">
+              <button ng-click="addApiKey ('',true)" type="submit" class="btn btn-primary mb-2">Create New API Key</button>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+
+
+
+      <h3 class="with-line">Access Tokens</h3>
+      <div class="row" >
+
+        <div class="card col-12 mb-2 " ng-if="apiTokens.length === 0 ">
+          <div class="card-body " >
+            <h5 class="card-title">You haven't created API Tokens yet :( </h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+
+
+        <table class="table" ng-if="apiTokens.length > 0 ">
+          <thead> <tr><th scope="col">#</th> <th scope="col">Token Key</th> <th scope="col">Token Secret</th><th></th></tr></thead>
+          <tbody>
+          <tr ng-repeat="item in apiTokens" ng-if="!item.deleted" >
+            <th scope="row">
+              <div class="input-group-text input-group-text-unstyled btn-outline-secondary">{{$index}}</div>
+            </th>
+            <td>
+              <label for="apitoken-{{item.key}}" class="input-group-text input-group-text-unstyled btn-outline-secondary">
+                {{item.key}}
+              </label>
+            </td>
+            <td>
+              <div class="input-group">
+                <input type="text" class="form-control" id="apitoken-{{item.key}}" readonly value="{{item.secret}}" />
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary"
+                          title="#{{item.key}}"
+                          data-clipboard-target="#apitoken-{{item.key}}"
+                          uib-tooltip="Copied!"
+                          tooltip-trigger="'focus'"
+                          tooltip-popup-close-delay="2000"
+                          ngclipboard
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </td>
+            <td> <button class="btn btn-outline-secondary" title="Revoke" ng-click="confirm(item.key)">Revoke</button> </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <form>
+          <div class="form-row align-items-center">
+            <div class="col-auto">
+              <label class="col-form-label sr-only" for="inlineFormInput3">Create new API Token:</label>
+              <input type="text" class="form-control mb-2" id="inlineFormInput3" placeholder="Passphrase"
+                     ng-keyup="addApiToken($event)" ng-model="newTokenPassphrase"
+              >
+            </div>
+            <div class="col-auto">
+              <button ng-click="addApiToken ('',true)" type="submit" class="btn btn-primary mb-2">Create New API Token</button>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+
+
 
 
     </div>

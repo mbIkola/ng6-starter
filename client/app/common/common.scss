@@ -5,7 +5,7 @@ $accentColor:    #1de9b6;
 $bgColor:        #efefef;
 $darkBgColor:    #263238;
 $lightBgColor:   #37474f;
-$lightTextColor: #f5f5f5;
+$lightTextColor: #818a91;
 $darkTextColor:  #212121;
 
 body {
@@ -14,4 +14,48 @@ body {
    // so setting top-level font-size to 62.5%
    // scales 1rem to equal 10px.
    font: 62.5% 'Roboto', sans-serif;
+}
+.main-content {
+   margin-top: 2rem;
+}
+.main-header {
+   padding-bottom: 1rem;
+}
+
+
+.bd-clipboard {
+   display: block;
+}
+.bd-clipboard {
+   position: relative;
+   float:right;
+}
+
+.btn-clipboard {
+   position: absolute;
+   top: .5rem;
+   right: .5rem;
+   z-index: 10;
+   display: block;
+   padding: .25rem .5rem;
+   font-size: 75%;
+   color: $lightTextColor;
+   cursor: pointer;
+   background-color: transparent;
+   border: 0;
+   border-radius: .25rem;
+}
+
+.btn-clipboard:hover {
+   color: $bgColor;
+   background-color: $primaryColor;
+}
+
+.input-group-text-unstyled, .input-group-text-unstyled:hover {
+   background-color: transparent;
+   border:0px;
+   color: $lightTextColor;
+}
+.input-group-text-unstyled:hover {
+   text-decoration: none; color:$darkTextColor;
 }

@@ -19,13 +19,17 @@ import 'angular-translate';
 import 'angular-translate-storage-cookie';
 import 'angular-translate-storage-local';
 import 'angular-translate-handler-log';
-
+import 'angular-ui-bootstrap';
+import 'ngclipboard';
 import 'angular-translate-interpolation-messageformat';
 import 'angular-google-analytics';
 import 'angular-loading-bar/build/loading-bar.css';
 import 'angular-loading-bar';
+
 import 'angular-sanitize';
 import 'satellizer';
+import 'angular-confirm1';
+import 'angular-confirm1/css/angular-confirm.css';
 
 import uiRouter from '@uirouter/angularjs';
 
@@ -53,6 +57,9 @@ const requires = [
   'angular-loading-bar',
   'angular-google-analytics',
   'satellizer',
+  'ngclipboard',
+  'ui.bootstrap',
+  'cp.ngConfirm',
   Common,
   Components
 ];

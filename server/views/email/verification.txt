@@ -1,0 +1,6 @@
+Hello {{ user.displayName }}
+
+
+Thanks for registering. Please follow the link below to complete your registration.
+
+{{ verifyUrl }}
