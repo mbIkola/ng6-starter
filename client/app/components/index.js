@@ -6,6 +6,7 @@ import Signin from './signin/';
 import Signup from './signup/';
 import Profile from './profile/';
 import socialSigninModule from "./social-signin";
+import dashboardModule from "./dashboard";
 import apikeys from './apikeys';
 
 
@@ -17,6 +18,7 @@ let componentsModule = angular.module('app.components', [
   Signup,
   Profile,
   socialSigninModule,
+  dashboardModule,
   apikeys
 ])
 .name;

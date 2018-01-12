@@ -21,7 +21,7 @@ const defaultConfig = {
     base_url: "",
     jwtSecret: "secret key so nobody could guess it",
     emailPassphrase: "Another secret passphrase so nobody could guess it too. An number 42. For security",
-
+    appRootDir: __dirname + '/',
     auth: require('./config/auth')
 };
 

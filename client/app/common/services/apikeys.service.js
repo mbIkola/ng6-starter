@@ -17,14 +17,19 @@ class ApiKeysService {
         throw new Error(res.status, res.statusText);
       });
   }
+
   delete(key) {
-    return this.$http.delete(this.apiUrl + '/' + key.key);
+    var uri = this.apiUrl + '/' + key;
+    console.log(uri);
+    return this.$http.delete(uri);
   }
   create(key) {
-    return this.http.put(this.apiUrl, key).then( res => res.data );
+    return this.$http.put(this.apiUrl, key, {json: true}).then( res => res.data );
   }
   update(key) {
-    return this.$http.post(this.apiUrl + '/' + key.key, key)
+    return this.$http.post(this.apiUrl + '/' + key.key, key, {json: true})
       .then((res) => res.data );
   }
 }
+
+export default ApiKeysService;

@@ -91,13 +91,13 @@ class EmailVerificationService {
     getHtmlVerifyTemplate(token, user) {
         var templateParams = this.getTemplateParams(token, user);
 
-        return compileTemplate('./views/email/verification.html')(templateParams);
+        return compileTemplate(config.appRootDir + 'views/email/verification.html')(templateParams);
     }
 
 
     getTextVerifyTemplate(token, user) {
         var templateParams = this.getTemplateParams(token, user);
-        return compileTemplate('./views/email/verification.txt')(templateParams);
+        return compileTemplate(config.appRootDir + '/views/email/verification.txt')(templateParams);
     }
     getTemplateParams(token, user) {
         var templateParams = Object.assign({}, model);

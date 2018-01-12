@@ -6,5 +6,5 @@ module.exports = function(app) {
     //     throw new Error("Database instance is required to bootstrap models");
     // }
     app.User = require('./user');
-
+    app.ApiKeys = require('./apikeys');
 };

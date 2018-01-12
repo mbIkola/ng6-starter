@@ -5,6 +5,7 @@ import AuthService from './auth.service';
 import PostService from './post.service';
 import authInterceptor from "./authinterceptor.factory";
 import ProfileService from './profile.service';
+import ApiKeysService from './apikeys.service';
 
 let commonServicesModule = angular.module('app.common.services', [])
 
