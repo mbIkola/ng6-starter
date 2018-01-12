@@ -8,6 +8,8 @@ import Profile from './profile/';
 import socialSigninModule from "./social-signin";
 import dashboardModule from "./dashboard";
 import apikeys from './apikeys';
+import trafficChartComponent from "./traffic-chart/traffic-chart.component";
+import trafficChartModule from "./traffic-chart/traffic-chart";
 
 
 let componentsModule = angular.module('app.components', [
@@ -19,7 +21,8 @@ let componentsModule = angular.module('app.components', [
   Profile,
   socialSigninModule,
   dashboardModule,
-  apikeys
+  apikeys,
+  trafficChartModule
 ])
 .name;
 

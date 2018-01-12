@@ -31,7 +31,17 @@ import 'satellizer';
 import 'angular-confirm1';
 import 'angular-confirm1/css/angular-confirm.css';
 
+import 'amcharts/dist/amcharts/amcharts';
+import 'amcharts/dist/amcharts/plugins/responsive/responsive.min.js';
+
+import 'amcharts/dist/amcharts/themes/dark';
+import 'ammaps/dist/ammap/ammap.js';
+import 'ammaps/dist/ammap/ammap.css'
+import 'ammaps/dist/ammap/maps/js/worldLow.js';
+
 import uiRouter from '@uirouter/angularjs';
+
+import 'chart.js'
 
 
 import 'bootstrap-switch';
